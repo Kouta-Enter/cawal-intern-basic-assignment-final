@@ -1,0 +1,16 @@
+services:
+    ap:
+        build: .
+        command: python3 app.py
+        depends_on:
+            - db
+        ports:
+        - 8000:8000
+    db:
+        build: ./db    #Dockerfileからビルドすることを示す
+        volumes:
+            - ./db:/root  #初期データをマウントする場所
+        image: original_mysql_world # イメージの名前
+        command: mysqld
+        environment:
+            - #コンテナ内のMySQLを起動する際のパスワードを設定
