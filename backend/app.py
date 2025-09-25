@@ -2,86 +2,101 @@ import flask
 import mysql.connector
 
 # MySQLに接続
-conn = mysql.connector.connect(
-    host="db",
-    user="root",
-    password="Passw@rd"
-)
+conn = mysql.connector.connect(host="db", user="user", password="pass", database="appdata")
 
 # カーソルを取得
 cursor = conn.cursor(dictionary=True)
-#Ubuntu 18.04 LTS
-#Python 3.6.8
-#MySQL Connector/Python 2.1.6で動作したとのことhttps://qiita.com/umezawatakeshi/items/7d7f4f8299e8d0d2db86
-
 
 # データベース作成
-cursor.execute("""CREATE DATABASE IF NOT EXISTS tasks
-(    id INT AUTO_INCREMENT PRIMARY KEY,
+create_table_query = """
+CREATE TABLE IF NOT EXISTS tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     completed BOOLEAN
-)""")
-
-
-
+)
+"""
+cursor.execute(create_table_query)
+cursor.close()
+conn.close()
 
 app = flask.Flask(__name__)
 
 @app.route("/")
+# def hi():
+#     return 'hi'
 def get():
     """test"""
-    cursor.execute("""
+    # MySQLに接続
+    conn_g = mysql.connector.connect(host="db", user="user", password="pass", database="appdata")
+
+    # カーソルを取得
+    cursor_g = conn_g.cursor(dictionary=True)
+    cursor_g.execute("""
 SELECT *
 FROM tasks
-    """)
-    result = cursor.fetchall()#dict型
-    # 接続を閉じる
-    cursor.close()
-    conn.close()
-    print(result)
+""")
+    result = cursor_g.fetchall()#dict型
+    cursor_g.close()
+    conn_g.close()
     return result
 
-@app.route("/PUT")
-def put():
+@app.route("/update")
+def update():
     """uptate data"""
-    task_id=flask.request.form.get("id", type=int)
-    title=flask.request.form.get("title")
-    completed=flask.request.form.get("completed")
-    if not title:
+    # MySQLに接続
+    conn_u = mysql.connector.connect(host="db", user="user", password="pass", database="appdata")
+    # カーソルを取得
+    cursor_u = conn_u.cursor(dictionary=True)
+    # task_id=flask.request.form.get("id", type=int)
+    # title=flask.request.form.get("title")
+    # completed=flask.request.form.get("completed")
+    if flask.request.args.get("title"):
+        ud_title=[flask.request.args.get("title"),flask.request.args.get("id",type=int)]
         update_title_query ="UPDATE tasks SET title = %s WHERE id = %s"
-        cursor.execute(update_title_query, (task_id, title))
-    if not completed:
+        cursor_u.execute(update_title_query, ud_title)
+    if flask.request.args.get("completed"):
+        ud_comp=[flask.request.args.get("completed"),flask.request.args.get("id",type=int)]
         update_completed_query ="UPDATE tasks SET completed = %s WHERE id = %s"
-        cursor.execute(update_completed_query, (id, completed))
-        conn.commit()
+        cursor_u.execute(update_completed_query,ud_comp)
+    conn_u.commit()
     # 接続を閉じる
-    cursor.close()
-    conn.close()
-    return flask.redirect('https://57.183.29.2:8000/')#@app.route("/")へリダイレクト
+    cursor_u.close()
+    conn_u.close()
+    return flask.redirect('/')#@app.route("/")へリダイレクト
 
-@app.route("/POST")
-def post():
+@app.route("/insert")
+def insert():
     """add task"""
-    title=flask.request.form.get("title")
-    if not title:
+    # MySQLに接続
+    conn_i = mysql.connector.connect(host="db", user="user", password="pass", database="appdata")
+    # カーソルを取得
+    cursor_i = conn_i.cursor(dictionary=True)
+    title=[flask.request.args.get("title")]
+    # title=[flask.request.form.get("title")]
+    if flask.request.args.get("title"):
         insert_query ="INSERT INTO tasks (title, completed) VALUES (%s, false)"
-        cursor.execute(insert_query, (title))
-        conn.commit()
+        cursor_i.execute(insert_query, title)
+        conn_i.commit()
     # 接続を閉じる
-    cursor.close()
-    conn.close()
-    return flask.redirect('https://57.183.29.2:8000/')#@app.route("/")へリダイレクト
+    cursor_i.close()
+    conn_i.close()
+    return flask.redirect('/')#@app.route("/")へリダイレクト
 
-@app.route("/DELETE")
+@app.route("/delete")
 def delete():
     """delete task"""
-    task_id=flask.request.form.get("id", type=int)
+    # MySQLに接続
+    conn_d = mysql.connector.connect(host="db", user="user", password="pass", database="appdata")
+    # カーソルを取得
+    cursor_d = conn_d.cursor(dictionary=True)
+    task_id=[flask.request.args.get("id", type=int)]
+    # task_id=flask.request.form.get("id", type=int)
     delete_query = "DELETE FROM tasks WHERE id = %s"
-    cursor.execute(delete_query, (task_id))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return flask.redirect('https://57.183.29.2:8000/')#@app.route("/")へリダイレクト
+    cursor_d.execute(delete_query, task_id)
+    conn_d.commit()
+    cursor_d.close()
+    conn_d.close()
+    return flask.redirect('/')#@app.route("/")へリダイレクト
 
 
 if __name__ == "__main__":
