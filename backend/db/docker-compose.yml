@@ -1,0 +1,16 @@
+services:
+    db:
+        build: .   #Dockerfileからビルドすることを示す
+        command: mysqld
+        networks:
+            - backend
+        environment:
+            #コンテナ内のMySQLを起動する際のパスワードを設定
+            - MYSQL_ROOT_PASSWORD=rootpass
+            - MYSQL_DATABASE=appdata
+            - MYSQL_USER=user
+            - MYSQL_PASSWORD=pass
+networks:
+  backend:
+    name: backend
+    external: true
