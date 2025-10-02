@@ -1,0 +1,32 @@
+services:
+    ui:
+        depends_on:
+            - app
+        build: ./task-manager/task-app
+        ports:
+            - 5173:5173
+        command: npm start
+        tty: true
+    app:
+        depends_on:
+            db:
+                condition: service_healthy
+        build: ./backend
+        command: python3 app.py
+        ports:
+             - 8000:8000
+    db:
+        build: ./backend/db   #Dockerfileからビルドすることを示す
+        command: mysqld
+        environment:
+            #コンテナ内のMySQLを起動する際のパスワードを設定
+            - MYSQL_ROOT_PASSWORD=rootpass
+            - MYSQL_DATABASE=appdata
+            - MYSQL_USER=user
+            - MYSQL_PASSWORD=pass
+        healthcheck:   # here
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+            interval: 30s
+            timeout: 5s
+            retries: 6
+            start_period: 30s
