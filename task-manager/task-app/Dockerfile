@@ -1,5 +1,5 @@
 FROM node:latest
-WORKDIR /task-app
-COPY . /task-app
+WORKDIR /frontend
+COPY ./frontend /frontend
 EXPOSE 5173
 

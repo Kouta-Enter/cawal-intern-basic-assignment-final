@@ -5,9 +5,9 @@ services:
             - 5173:5173
         tty: true
         command: npm run dev
-    dummyapp:
-        ports:
-            - 8000:8000
-        build: ./dummy
-        tty: true
-        command: python3 dummy.py
+    # dummyapp:
+    #     ports:
+    #         - 8000:8000
+    #     build: ./dummy
+    #     tty: true
+    #     command: python3 dummy.py
