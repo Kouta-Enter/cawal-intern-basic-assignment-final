@@ -2,7 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  width: 100%;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -25,21 +25,23 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  place-items: top;
+  width: 100%;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.5em;
   line-height: 1.1;
 }
 
 button {
+  position: absolute;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 0.8em;
+  padding: 0.1em 0.2em;
+  margin: 5px 10px 5px 10px;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -53,16 +55,45 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+input[type="checkbox"]{
+  height: 2em;
+  width: 2em;
+}
+input[type="text"]{
+  height: 3em;
+  width: 50em;
+}
+div{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 1em;
+}
+h2{
+  width: 100%;
+  left:0em;
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+.delbutton {
+  right: 3.5em;
+}
+.cancel {
+  right: 4.5em;
+}
+.edit-add {
+  right: 1em;
+}
+.adds{
+  position: absolute;
+  bottom: 0em;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
-    background-color: #f9f9f9;
+    background-color: #aaaaaa;
   }
 }
