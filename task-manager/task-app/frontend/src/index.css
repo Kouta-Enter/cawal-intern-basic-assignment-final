@@ -3,6 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
   width: 100%;
+  height: 100%;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -13,20 +14,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
   place-items: top;
   width: 100%;
+  height: 100%;
   min-height: 100vh;
 }
 
@@ -39,7 +32,7 @@ button {
   position: absolute;
   border-radius: 8px;
   border: 1px solid transparent;
-  font-size: 0.8em;
+  font-size: 30px;
   padding: 0.1em 0.2em;
   margin: 5px 10px 5px 10px;
   font-weight: 500;
@@ -48,51 +41,72 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-input[type="checkbox"]{
+
+input[type='checkbox'] {
   height: 2em;
   width: 2em;
 }
-input[type="text"]{
+
+input[type='text'] {
+  position: absolute;
+  bottom: 0.5em;
   height: 3em;
-  width: 50em;
+  width: 90em;
 }
-div{
+
+div {
   position: absolute;
   width: 100%;
   height: 100%;
   left: 1em;
 }
-h2{
+
+h2 {
   width: 100%;
-  left:0em;
+  left: 0em;
   font-size: 2.5em;
   line-height: 1.1;
 }
+
 .delbutton {
   right: 3.5em;
 }
+
 .cancel {
   right: 4.5em;
 }
+
 .edit-add {
   right: 1em;
 }
-.adds{
-  position: absolute;
-  bottom: 0em;
+
+.edit {
+  left: 0em;
 }
+
+.adds {
+  width: 100%;
+  height: 4em;
+  position: fixed;
+  bottom: 2em;
+  background-color: #9a9696;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   button {
     background-color: #aaaaaa;
   }
