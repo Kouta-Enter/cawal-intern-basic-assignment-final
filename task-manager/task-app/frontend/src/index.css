@@ -59,7 +59,7 @@ input[type='checkbox'] {
 input[type='text'] {
   bottom: 0.5em;
   height: 3em;
-  width: 90em;
+  width: 80em;
 }
 
 div {
@@ -88,7 +88,13 @@ h2 {
   right: 1em;
 }
 
-.edit {
+.Add {
+  position: relative;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.Enter {
   left: 0em;
 }
 
@@ -96,8 +102,8 @@ h2 {
   width: 100%;
   height: 4em;
   position: fixed;
-  bottom: 2em;
-  background-color: #9a9696;
+  bottom: 0.5em;
+  background-color: #ffffff;
 }
 
 @media (prefers-color-scheme: light) {

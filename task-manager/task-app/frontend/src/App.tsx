@@ -49,10 +49,11 @@ function EddittingLine({
     }
     set();
   }
+  let classname=add?'Add':'Enter'
   return (
     <>
       <form action={handleSubmit} id={String(prop.id)}>
-        <input type="text" name="newTitle" defaultValue={''} />
+        <input type="text" name="newTitle" defaultValue={''} className={classname} />
         {!add && (
           <button
             type="button"
@@ -66,7 +67,7 @@ function EddittingLine({
           </button>
         )}
         <button className="edit-add" name="submit" type="submit">
-          Enter
+          {classname}
         </button>
       </form>
     </>
