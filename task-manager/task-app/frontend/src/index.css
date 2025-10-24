@@ -57,10 +57,9 @@ input[type='checkbox'] {
 }
 
 input[type='text'] {
-  position: absolute;
   bottom: 0.5em;
   height: 3em;
-  width: 70em;
+  width: 90em;
 }
 
 div {
@@ -71,7 +70,6 @@ div {
 }
 
 h2 {
-  position: static;
   width: 100%;
   left: 0em;
   font-size: 2.5em;
