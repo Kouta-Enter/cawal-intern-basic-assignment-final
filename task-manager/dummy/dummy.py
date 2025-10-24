@@ -4,26 +4,34 @@ from flask_cors import CORS
 
 app = flask.Flask(__name__)
 CORS(app)
+
+
 @app.route("/")
 def get():
     """get"""
-    data=[]
-    return json.dumps(data)#jsonに変換して渡す(new)
+    data = [
+        {"completed": 0, "id": 1, "title": "task2"},
+        {"completed": 0, "id": 2, "title": "task1"},
+    ]
+    return json.dumps(data)  # jsonに変換して渡す(new)
 
-@app.route("/update")
+
+@app.route("/update", methods=["POST"])  # 後で本物にも追加
 def update():
     """uptate data"""
-    return flask.redirect('/')#@app.route("/")へリダイレクト
+    return flask.redirect("/")  # @app.route("/")へリダイレクト
 
-@app.route("/insert")
+
+@app.route("/insert", methods=["POST"])
 def insert():
     """add task"""
-    return flask.redirect('/')#@app.route("/")へリダイレクト
+    return flask.redirect("/")  # @app.route("/")へリダイレクト
 
-@app.route("/delete")
+
+@app.route("/delete", methods=["POST"])
 def delete():
     """delete task"""
-    return flask.redirect('/')#@app.route("/")へリダイレクト
+    return flask.redirect("/")  # @app.route("/")へリダイレクト
 
 
 if __name__ == "__main__":
