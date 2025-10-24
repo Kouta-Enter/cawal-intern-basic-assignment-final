@@ -50,10 +50,11 @@ function EddittingLine({
     set();
   }
   let classname=add?'Add':'Enter'
+  let initial=add?'':prop.title
   return (
     <>
       <form action={handleSubmit} id={String(prop.id)}>
-        <input type="text" name="newTitle" defaultValue={''} className={classname} />
+        <input type="text" name="newTitle" defaultValue={initial} className={classname} />
         {!add && (
           <button
             type="button"
