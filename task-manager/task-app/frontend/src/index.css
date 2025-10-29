@@ -1,0 +1,118 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: top;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+
+button {
+  position: absolute;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 30px;
+  padding: 0.1em 0.2em;
+  margin: 5px 10px 5px 10px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input[type='checkbox'] {
+  height: 2em;
+  width: 2em;
+}
+
+input[type='text'] {
+  bottom: 0.5em;
+  height: 3em;
+  width: 80em;
+}
+
+div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 1em;
+}
+
+h2 {
+  width: 100%;
+  left: 0em;
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+
+.delbutton {
+  right: 3.5em;
+}
+
+.cancel {
+  right: 4.5em;
+}
+
+.edit-add {
+  right: 1em;
+}
+
+.Add {
+  position: relative;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.Enter {
+  left: 0em;
+}
+
+.adds {
+  width: 100%;
+  height: 4em;
+  position: fixed;
+  bottom: 0.5em;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  button {
+    background-color: #aaaaaa;
+  }
+}
